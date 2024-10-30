@@ -1,13 +1,9 @@
-import xml.dom.minidom
-doc = xml.dom.minidom.parse("sample.xml")
+from xml.dom import minidom
 
-company = doc.documentElement
-company_name = company.getElementsByTagName("name")[0].childNodes[0].data
-print("Tên công ty:", company_name)
+doc = minidom.parse('sample.xml')
+staffs = doc.getElementsByTagName('staff')
 
-staff_list = company.getElementsByTagName("staff")
-for staff in staff_list:
-    staff_id = staff.getAttribute("id")
-    staff_name = staff.getElementsByTagName("name")[0].childNodes[0].data
-    salary = staff.getElementsByTagName("salary")[0].childNodes[0].data
-    print(f"Nhân viên ID {staff_id}: {staff_name}, Lương: {salary}")
+for staff in staffs:
+    name = staff.getElementsByTagName('name')[0].firstChild.data
+    salary = staff.getElementsByTagName('salary')[0].firstChild.data
+    print(f'Name: {name}, Salary: {salary}')
