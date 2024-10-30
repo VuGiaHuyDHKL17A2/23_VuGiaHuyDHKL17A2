@@ -1,0 +1,9 @@
+import xml.etree.ElementTree as ET
+
+tree = ET.parse('sample.xml')
+root = tree.getroot()
+
+for staff in root.findall('staff'):
+    name = staff.find('name').text
+    salary = staff.find('salary').text
+    print(f'Name: {name}, Salary: {salary}')
